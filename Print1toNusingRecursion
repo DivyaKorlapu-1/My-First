@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+class Solution {
+public:
+void printNum(int cur,int n)
+  {
+    //base case
+    if(cur > n) return;
+    cout<<cur<<endl;
+    //recursive case
+    printNum(cur+1,n);
+  }
+  public:
+    void printNumbers(int n) {
+       printNum(1,n);
+    }
+};
+int main() {
+    Solution sol;
+    int n;
+    cin >> n;
+    sol.printNumbers(n);
+    return 0;
+}
