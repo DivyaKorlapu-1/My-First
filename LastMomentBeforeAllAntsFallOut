@@ -1,0 +1,22 @@
+Input:  n = 4, left[] = [], right[] = [0, 1, 2, 3, 4]
+Output: 4
+Explanation: All ants are going to the right, the ant at index 0 needs 4 seconds to fall.
+sol:
+------
+class Solution {
+  public:
+    int getLastMoment(int n, vector<int>& left, vector<int>& right) {
+        // code here
+        int maxLeft=0;
+        int maxRight=0;
+        for(int pos:left)
+        {
+            maxLeft=max(maxLeft,pos);
+        }
+        for(int pos:right)
+        {
+            maxRight=max(maxRight,n-pos);
+        }
+        return max(maxLeft,maxRight);
+    }
+};
