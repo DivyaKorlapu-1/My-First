@@ -24,3 +24,16 @@ class Solution {
         return max(maxSum,total-minSum);
     }
 };
+
+-------------
+Explanation:
+-------------
+- 💡 The function finds the maximum subarray sum in a circular array where elements wrap around.
+- 📈 Uses Kadane’s Algorithm to compute maxSum, the largest sum of a subarray (standard non-circular case).
+- 📉 Simultaneously calculates minSum, the smallest subarray sum to help detect circular wrapping.
+- 🔄 Adds up total, the sum of all array elements, needed for circular case logic.
+- 🌀 Computes circular max as total - minSum, which represents removing the minimum (worst) part to maximize what wraps around.
+- ⚠️ If all elements are negative, total - minSum falsely becomes 0, so the check if (maxSum < 0) ensures the algorithm returns the true max single element.
+- ✅ Final return is either maxSum or total - minSum, whichever is higher — unless maxSum is negative, in which case only maxSum is correct.
+If you'd like, I 
+--------------
