@@ -1,0 +1,31 @@
+Given an unsorted array arr[] of integers, find the number of subarrays whose sum exactly equal to a given number k.
+
+Examples:
+
+Input: arr[] = [10, 2, -2, -20, 10], k = -10
+Output: 3
+Explaination: Subarrays: arr[0...3], arr[1...4], arr[3...4] have sum exactly equal to -10.
+Input: arr[] = [9, 4, 20, 3, 10, 5], k = 33
+Output: 2
+Explaination: Subarrays: arr[0...2], arr[2...4] have sum exactly equal to 33.
+----------------------------------------------------------------------
+class Solution 
+{
+  public:
+    int cntSubarrays(vector<int> &arr, int k) {
+        // code here
+    unordered_map<int, int> prefixSumCnt;
+    int cnt = 0, sum = 0;
+    prefixSumCnt[0] = 1; // Base case: zero sum before starting
+    for (int num : arr) {
+        sum += num;
+        // Check if there's a prefix sum that would make current sum - k
+        if (prefixSumCnt.find(sum - k) != prefixSumCnt.end()) {
+            cnt += prefixSumCnt[sum - k];
+        }
+        // Record current prefix sum
+        prefixSumCnt[sum]++;
+    }
+    return cnt;
+    }
+};
