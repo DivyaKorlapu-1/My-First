@@ -1,0 +1,38 @@
+Given a string s, count all palindromic sub-strings present in the string. The length of the palindromic sub-string must be greater than or equal to 2.
+
+Note: A substring is palindromic if it reads the same forwards and backwards.
+
+Examples:
+
+Input: s = "abaab"
+Output: 3
+Explanation: All palindromic substrings (of length > 1) are: "aba", "aa", "baab".
+Input: s = "aaa"
+Output: 3
+Explanation: All palindromic substrings (of length > 1) are: "aa", "aa", "aaa".
+Input: s = "abbaeae"
+Output: 4
+Explanation: All palindromic substrings (of length > 1) are: "bb", "abba", "aea", "eae".
+--------------------------------------------------------------------------------------
+
+class Solution {
+public:
+    void cntPalin(string s, int left, int right, int &count) {
+        while (left >= 0 && right < s.length() && s[left] == s[right]) {
+            int len = right - left + 1;
+            if (len >= 2) {
+                count++;
+            }
+            left--;
+            right++;
+        }
+    }
+    int countPS(string &s) {
+        int count = 0;
+        for (int i = 0; i < s.length(); i++) {
+            cntPalin(s, i, i, count);       // Odd-length palindromes
+            cntPalin(s, i, i + 1, count);   // Even-length palindromes
+        }
+        return count;
+    }
+};
